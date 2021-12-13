@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  stage: MyString
+  phone: MyString
+  company: one
+  probability: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  stage: MyString
+  phone: MyString
+  company: two
+  probability: 1
