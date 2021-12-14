@@ -6,6 +6,7 @@ import { BrowserRouter as Router,
 import NavBar from "./components/NavBar";
 import ProspectsPage from "./components/ProspectsPage"
 import CompaniesPage from "./components/CompaniesPage"
+import ProspectDetails from "./components/ProspectDetails"
 
 function App() {
   const [prospects, setProspects] = useState([])
@@ -28,14 +29,18 @@ function App() {
   return (
     <div>
       <Router>
-      <NavBar />
-<Routes>
-      <Route path="/prospects" element={  <ProspectsPage
+        <NavBar />
+          <Routes>
+            <Route path="/prospects" element={  <ProspectsPage
+              prospects={prospects}
+            />}/>
+
+            <Route path="/prospects/:id" element={  <ProspectDetails
               prospects={prospects}
             />}/>
           
 
-      <Route path="/companies" element={  <CompaniesPage
+            <Route path="/companies" element={  <CompaniesPage
               companies={companies}
             />}/>
           

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 function CompanyCard({company}) {
     const [expand, setExpand] = useState(false)
 
@@ -12,7 +12,7 @@ function CompanyCard({company}) {
             <div>
                 <h2>Employees:</h2>
             {company.prospects.map(prospect =>
-                <li>{prospect.first_name} {prospect.last_name}</li>
+                <Test as={Link} to={`/prospects/${prospect.id}`}><li>{prospect.first_name} {prospect.last_name}</li></Test>
                 )}
             </div>
             }
@@ -20,6 +20,10 @@ function CompanyCard({company}) {
         </div>
     )
 }
+
+const Test = styled.li`
+
+`;
 
 const Card = styled.div`
 margin-top: 10px;
@@ -34,7 +38,7 @@ justify-content: center;
 align-items: center;
 text-align: center;
 border: 2px solid grey;
-background-color: rgb(50, 50, 50);
+background-color: grey;
 border-radius: 15px;
 &:hover {
   box-shadow: 0px 0px 15px 0px #848484;

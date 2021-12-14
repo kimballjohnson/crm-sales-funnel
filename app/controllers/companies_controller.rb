@@ -13,5 +13,16 @@ class CompaniesController < ApplicationController
             render json: {error: "Company not found"}, status: :unprocessable_entity
         end
     end
+
+    def create 
+        company = Company.create(company_params)
+        render json: company
+    end
     
+    private
+    
+    def company_params
+        params.permit(:name)
+    end
+
 end
