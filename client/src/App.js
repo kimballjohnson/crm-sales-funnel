@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router,
+  Routes,
+  Route,
+  useRoutes, } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import ProspectsPage from "./components/ProspectsPage"
+import CompaniesPage from "./components/CompaniesPage"
 
 function App() {
+  const [prospects, setProspects] = useState([])
+  const [companies, setCompanies] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/prospects").then((r) => {
+      if (r.ok) {
+        r.json().then((prospects) => setProspects(prospects));
+      }
+    });
+    fetch("http://localhost:3000/companies").then((r) => {
+      if (r.ok) {
+        r.json().then((companies) => setCompanies(companies));
+      }
+    });
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+      <NavBar />
+<Routes>
+      <Route path="/prospects" element={  <ProspectsPage
+              prospects={prospects}
+            />}/>
+          
+
+      <Route path="/companies" element={  <CompaniesPage
+              companies={companies}
+            />}/>
+          
+      </Routes>
+      </Router>
     </div>
   );
 }
