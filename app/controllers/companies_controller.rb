@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+    wrap_parameters format: []
 
     def index
         companies = Company.all 

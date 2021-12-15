@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function NavBar() {
@@ -17,16 +17,31 @@ function NavBar() {
 }
 
 const NavButton = styled.button`
-  cursor: pointer;
-  font-size: 1.5rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  // padding: 8px 16px;
-  text-decoration: none;
-  a {
-    color: inherit;
-    text-decoration: none;
+margin-top: 1%;
+margin-left: 1%;
+width: 8vw;
+height: 6vh;
+/* line-height: 50px; */
+font-weight: bold;
+text-decoration: none;
+text-align: center;
+align-items: center;
+color: #fff;
+text-transform: uppercase;
+letter-spacing: 1px;
+/* border: 3px solid #2E6268; */
+transition: all .35s;
+justify-content: center;
+font-size: 1.5vh;
+
+  &:hover {
+    width: 10vw;
+    border: 3px solid #7F7F7F;
+    background: transparent;
+    color: #7F7F7F;
+    cursor: pointer;
   }
 `;
+
 
 export default NavBar;

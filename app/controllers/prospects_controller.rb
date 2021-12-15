@@ -1,4 +1,6 @@
 class ProspectsController < ApplicationController
+    wrap_parameters format: []
+
     def index
         prospects = Prospect.all 
         render json: prospects

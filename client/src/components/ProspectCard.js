@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function ProspectCard({prospect}) {
+function ProspectCard({prospect, companies}) {
 
     const src = `/prospects/${prospect.id}`;
 
     const [expand, setExpand] = useState(false)
-console.log(prospect)
+
     return(
         <div>
             <Card onClick={() => setExpand(!expand)}>
@@ -21,8 +21,8 @@ console.log(prospect)
             </Span>
             {!expand ? null : 
             <div>
-            <p>{prospect.email}</p>
-            <p>{prospect.phone}</p>
+            {/* <p>{prospect.email}</p>
+            <p>{prospect.phone}</p> */}
             <Button as={Link} to={src}>View this Prospect</Button>
             </div>}
             {/* {expand ? <Down><h3>❱</h3></Down> : <Up><h3>❱</h3></Up>} */}
@@ -72,12 +72,12 @@ const Button = styled.button`
 
 `;
 
-const Down = styled.text`
-transform: rotate(-90deg)
-`;
+// const Down = styled.text`
+// transform: rotate(-90deg)
+// `;
 
-const Up = styled.text`
-transform: rotate(90deg)
-`;
+// const Up = styled.text`
+// transform: rotate(90deg)
+// `;
 
 export default ProspectCard
