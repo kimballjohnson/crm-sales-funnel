@@ -7,8 +7,8 @@ function ProspectsPage({prospects, loading, companies, addingProspect, setAdding
     const [search, setSearch] = useState('')
 
     const prospectsToDisplay = prospects.filter(prospect => 
-        prospect.first_name.toLowerCase().includes(search.toLowerCase()) 
-        || prospect.last_name.toLowerCase().includes(search.toLowerCase()) 
+        (prospect.first_name.toLowerCase() + ' ' + prospect.last_name.toLowerCase()).includes(search.toLowerCase()) 
+        // || prospect.last_name.toLowerCase().includes(search.toLowerCase()) 
         )
 
     return(
