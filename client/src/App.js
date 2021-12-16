@@ -7,26 +7,31 @@ import NavBar from "./components/NavBar";
 import ProspectsPage from "./components/ProspectsPage"
 import CompaniesPage from "./components/CompaniesPage"
 import ProspectDetails from "./components/ProspectDetails"
+import CompanyDetails from "./components/CompanyDetails"
+import HomePage from "./components/HomePage"
 
 function App() {
   const [prospects, setProspects] = useState([])
   const [companies, setCompanies] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loadingProspects, setLoadingProspects] = useState(false)
+  const [loadingCompanies, setLoadingCompanies] = useState(false)
   const [addingProspect, setAddingProspect] = useState(false)
   const [addingCompany, setAddingCompany] = useState(false)
   // const [selectedProspect, setSelectedProspect] = useState({})
 
   useEffect(() => {
-    setLoading(true)
+    setLoadingProspects(true)
     fetch("http://localhost:3000/prospects").then((r) => {
       if (r.ok) {
         r.json().then((prospects) => setProspects(prospects));
-        setLoading(false)
+        setLoadingProspects(false)
       }
     });
+    setLoadingCompanies(true)
     fetch("http://localhost:3000/companies").then((r) => {
       if (r.ok) {
         r.json().then((companies) => setCompanies(companies));
+        setLoadingCompanies(false)
       }
     });
   }, []);
@@ -40,7 +45,7 @@ function App() {
           <Routes>
             <Route path="/prospects" element={  <ProspectsPage
               prospects={prospects}
-              loading={loading}
+              loading={loadingProspects}
               companies={existingCompanies}
               addingProspect={addingProspect}
               setAddingProspect={setAddingProspect}
@@ -59,6 +64,17 @@ function App() {
               companies={existingCompanies}
               addingCompany={addingCompany}
               setAddingCompany={setAddingCompany}
+              loading={loadingCompanies}
+            />}/>
+
+            <Route path="/companies/:id" element={  <CompanyDetails
+              prospects={prospects}
+             setAddingProspect={setAddingProspect}
+             loadingProspects={loadingProspects}
+            />}/>
+
+            <Route path="/" element={  <HomePage
+            
             />}/>
           
       </Routes>

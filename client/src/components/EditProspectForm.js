@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function NewProspectForm({prospect, companies, setAddingCompany, edit, setEdit}) {
+function NewProspectForm({prospect, company, companies, setAddingCompany, edit, setEdit}) {
     const [firstName, setFirstName] = useState(prospect.first_name)
     const [lastName, setLastName] = useState(prospect.last_name)
-    const [company, setCompany] = useState({})
+    const [newCompany, setNewCompany] = useState(company)
     const [stage, setStage] = useState(prospect.stage)
     const [probability, setProbability] = useState(prospect.probability)
     const [email, setEmail] = useState(prospect.email)
@@ -44,7 +44,7 @@ function NewProspectForm({prospect, companies, setAddingCompany, edit, setEdit})
       };
 
       const handleCompanyChange = (e) => {
-        setCompany(e.target.value);
+        setNewCompany(e.target.value);
         console.log(company.name);
       };
 
@@ -75,7 +75,7 @@ function NewProspectForm({prospect, companies, setAddingCompany, edit, setEdit})
     <h2>First Name: <Input required type="text" autoComplete="off" value={firstName} onChange={(e) => setFirstName(e.target.value)}></Input> </h2>
     <h2>Last Name: <Input required type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}></Input> </h2>
     <h2>Company:         
-        <Select name="company" onChange={handleCompanyChange}>
+        <Select value={company.name} name="company" onChange={handleCompanyChange}>
             {companies.map(company => 
                 <option key={company.id} value={company}>{company.name}</option>
                 )}
@@ -85,14 +85,14 @@ function NewProspectForm({prospect, companies, setAddingCompany, edit, setEdit})
     <h2>Stage: 
             <Select value={stage} name="stage" onChange={handleStageChange}>
             {stages.map(stage => 
-                <option value={stage}>{stage}</option>
+                <option value={stage} key={stage.id}>{stage}</option>
                 )}
         </Select> 
         </h2>
     <h2>Probability: 
     <Select value={probability} name="probability" onChange={handleProbabilityChange}>
             {probabilities.map(probability => 
-                <option value={probability}>{probability}%</option>
+                <option value={probability} key={probability.id} >{probability}%</option>
                 )}
         </Select> 
     </h2>
@@ -101,7 +101,7 @@ function NewProspectForm({prospect, companies, setAddingCompany, edit, setEdit})
     <h2>Phone: <Input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}></Input> </h2>
     <span>
         <Buttons>
-    <SubmitButton type="submit">Add Prospect</SubmitButton>
+    <SubmitButton type="submit">Save Prospect</SubmitButton>
     <Button onClick={() => setEdit(!edit)}>{!edit ? 'Edit this Prospect' : 'Cancel'}</Button>
     </Buttons>
     </span>
@@ -158,7 +158,7 @@ const SubmitButton = styled.button.attrs({
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -186,7 +186,7 @@ const SubmitButton = styled.button.attrs({
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -207,9 +207,9 @@ const SubmitButton = styled.button.attrs({
   const Container = styled.div`
   margin-left: 30vw;
   margin-right: 30vw;
-  margin-top: 10vh;
+  margin-top: 5vh;
   margin-bottom: 20vh;
-  max-height: 80vh;
+  max-height: 100vh;
   background-color: #FFFFFF;
   border-radius: 10px;
   overflow-y: auto;

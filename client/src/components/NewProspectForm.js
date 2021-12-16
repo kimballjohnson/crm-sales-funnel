@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     const [firstName, setFirstName] = useState('')
@@ -10,6 +11,8 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     const [probability, setProbability] = useState(0)
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+
+    const navigate = useNavigate()
 
     const createProspect = (firstName, lastName, company, stage, probability, email, phone) => {
         fetch(`http://localhost:3000/prospects/`, {
@@ -45,6 +48,11 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
         setCompany(e.target.value);
       };
 
+      const newCompany = () => {
+        setAddingCompany(true) 
+        navigate(`/companies`)
+      }
+
       const stages = [
         'Diligence',
         'Lead',
@@ -73,22 +81,23 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     <h2>Company:         
         <Select name="company" onChange={handleCompanyChange}>
             {companies.map(company => 
-                <option value={company}>{company.name}</option>
+                <option value={company} key={company.id}>{company.name}</option>
                 )}
         </Select> 
         </h2>
-        <h3>Company not listed? <NavButton onClick={() => setAddingCompany(true)} as={Link} to={`/companies`}>Add a Company</NavButton></h3>
+        <h3>Company not listed?</h3>
+            <Button onClick={newCompany}>Add a Company</Button>
     <h2>Stage: 
             <Select name="stage" onChange={handleStageChange}>
             {stages.map(stage => 
-                <option value={stage}>{stage}</option>
+                <option value={stage} key={stage.id}>{stage}</option>
                 )}
         </Select> 
         </h2>
     <h2>Probability: 
     <Select name="probability" onChange={handleProbabilityChange}>
             {probabilities.map(probability => 
-                <option value={probability}>{probability}%</option>
+                <option value={probability} key={probability.id}>{probability}%</option>
                 )}
         </Select> 
     </h2>
@@ -154,7 +163,7 @@ const SubmitButton = styled.button.attrs({
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -182,7 +191,7 @@ const SubmitButton = styled.button.attrs({
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -203,9 +212,9 @@ const SubmitButton = styled.button.attrs({
   const Container = styled.div`
   margin-left: 30vw;
   margin-right: 30vw;
-  margin-top: 10vh;
-  margin-bottom: 20vh;
-  max-height: 80vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  max-height: 120vh;
   background-color: #FFFFFF;
   border-radius: 10px;
   overflow-y: auto;

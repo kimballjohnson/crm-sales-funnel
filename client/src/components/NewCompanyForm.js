@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 function NewCompanyForm({setAddingCompany}) {
     const [name, setName] = useState('')
@@ -100,7 +99,7 @@ const SubmitButton = styled.button.attrs({
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -128,7 +127,7 @@ const SubmitButton = styled.button.attrs({
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -144,20 +143,5 @@ const SubmitButton = styled.button.attrs({
       cursor: pointer;
     }
   `;
-
-
-
-const NavButton = styled.button`
-  cursor: pointer;
-  font-size: 1.5rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  // padding: 8px 16px;
-  text-decoration: none;
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-`;
 
 export default NewCompanyForm

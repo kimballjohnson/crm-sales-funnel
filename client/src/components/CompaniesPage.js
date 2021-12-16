@@ -3,7 +3,7 @@ import CompanyCard from "./CompanyCard"
 import styled from "styled-components";
 import NewCompanyForm from "./NewCompanyForm"
 
-function CompaniesPage({companies, addingCompany, setAddingCompany}) {
+function CompaniesPage({companies, addingCompany, setAddingCompany, loading}) {
     // const [adding, setAdding] = useState(false)
     const [search, setSearch] = useState('')
 
@@ -12,31 +12,55 @@ function CompaniesPage({companies, addingCompany, setAddingCompany}) {
         )
     return(
         <div>
-
+            {loading ? 
+              <div>
+              <Loading>
+                  <h1>Loading Companies...</h1>
+                  <h3>(This could take a minute)</h3>
+                  <Img src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" />
+              </Loading>
+          </div> 
+            : 
+            <div> 
             <Input type='text' placeholder="Search for a Company" value={search} onChange={(e) => setSearch(e.target.value)}/>
-            
+        {/* <Buttons> */}
+            {/* {addingCompany ? null : <Button onClick={() => setAddingCompany(true)}>Add New Company</Button>} */}
+            {!addingCompany ? 
+            <Button onClick={() => setAddingCompany(true)}>Add New Company</Button>
+            : <NewCompanyForm setAddingCompany={setAddingCompany}/>}
+        {/* </Buttons> */}
+            {companiesToDisplay.length === 0 ? <h2>No Companies Matched Your Search</h2> :
             <Container>
         {companiesToDisplay.map(company => 
-        <CompanyCard company={company} companies={companies}/>
+        <CompanyCard key={company.id} company={company} companies={companies}/>
             )}
             </Container>
-        <Buttons>
-            {addingCompany ? null : <Button onClick={() => setAddingCompany(true)}>Add New Company</Button>}
-            {!addingCompany ? null : <NewCompanyForm setAddingCompany={setAddingCompany}/>}
-        </Buttons>
+}
+</div>}
     </div>
     )
 }
 
-const Buttons = styled.span`
+const Loading = styled.div`
+display: flex;
+flex-direction: column;
+margin-left: 20vw;
+margin-right: 20vw;
+margin-top: 15vh;
 align-items: center;
 justify-content: center;
-position: relative;
-height: 500;
 `;
 
+const Img = styled.img`
+height: 8vh;
+width: 5vw;
+`;
+
+
+
 const Input = styled.input`
-    width: 100%;
+    width: 85%;
+    height: 5vh;
     border: none;
     border-bottom: 2px solid #E3E3E3;
 font-size: large;
@@ -50,7 +74,7 @@ outline: none;
 `;
 
 const Button = styled.button`
-
+position: absolute;
   margin-top: 1%;
   margin-left: 1%;
   width: 8vw;
@@ -60,7 +84,7 @@ const Button = styled.button`
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */
@@ -69,7 +93,8 @@ const Button = styled.button`
   font-size: 1.5vh;
   
     &:hover {
-      width: 10vw;
+      width: 8vw;
+      height: 8vh;
       border: 3px solid #7F7F7F;
       background: transparent;
       color: #7F7F7F;
@@ -78,18 +103,21 @@ const Button = styled.button`
   `;
 
 const Container = styled.div`
-  margin-left: 10vw;
-  margin-right: 10vw;
+// align-items: center;
+// justify-content: center;
+  margin-left: 5vw;
+  margin-right: 5vw;
   margin-top: 7vh;
   margin-bottom: 2vh;
-  max-height: 60vh;
-  background-color: #FFFFFF;
-  border-radius: 10px;
+  max-height: 80vh;
+//   background-image: linear-gradient(rgb(37, 38, 51), rgb(60, 60, 60), rgb(37, 38, 51), rgb(60, 60, 60), rgb(37, 38, 51));
+  background-color: rgb(60, 60, 60);
+//   border-radius: 10px;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0px 0px 5px 0px #DBDBDB;
+//   box-shadow: 0px 0px 5px 0px #DBDBDB;
   display: grid;
-  grid-template-columns: 40vw 40vw;
+  grid-template-columns: 30vw 30vw 30vw;
   &::-webkit-scrollbar {
       width: 10px;
   }

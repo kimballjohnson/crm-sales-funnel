@@ -8,8 +8,8 @@ class CompaniesController < ApplicationController
 
     def show
         company = Company.find(params[:id])
-        if Company
-            render json: store
+        if company
+            render json: company, include: :prospects
         else
             render json: {error: "Company not found"}, status: :unprocessable_entity
         end

@@ -7,7 +7,7 @@ import EditProspectForm from "./EditProspectForm"
 
 function ProspectDetails({companies, setAddingCompany}) {
     const [prospectDetails, setProspectDetails] = useState([]);
-    const [company, setCompany] = useState([]);
+    const [company, setCompany] = useState({});
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -20,7 +20,8 @@ useEffect(() => {
       .then((res) => res.json())
       .then((data) => {
         setProspectDetails(data);
-        setCompany(data.company.name)
+        setCompany(data.company)
+      
       });
     }, [id]);
 
@@ -31,7 +32,7 @@ useEffect(() => {
          <Container>
             <h3>First Name: {prospectDetails.first_name}</h3>
             <h3>Last Name: {prospectDetails.last_name}</h3>
-            <h3>Current Company: {company === null ? "None" : company}</h3>
+            <h3>Current Company: {company === null ? "None" : company.name}</h3>
             <h3>Stage: {prospectDetails.stage}</h3>
             <h3>Probability: {prospectDetails.probability}%</h3>
             <h5>Contact Info:</h5>
@@ -41,7 +42,7 @@ useEffect(() => {
         </Container>
         :
         <div>
-        <EditProspectForm prospect={prospectDetails} companies={companies} 
+        <EditProspectForm prospect={prospectDetails} company={company} companies={companies} 
         setAddingCompany={setAddingCompany} edit={edit} setEdit={setEdit}/>
         
         </div>
@@ -54,6 +55,7 @@ const Button = styled.button`
 
   margin-top: 1%;
   margin-left: 1%;
+  margin-bottom: 1%;
   width: 8vw;
   height: 6vh;
   /* line-height: 50px; */
@@ -61,7 +63,7 @@ const Button = styled.button`
   text-decoration: none;
   text-align: center;
   align-items: center;
-  color: #fff;
+  color: rgb(37, 38, 51);
   text-transform: uppercase;
   letter-spacing: 1px;
   /* border: 3px solid #2E6268; */

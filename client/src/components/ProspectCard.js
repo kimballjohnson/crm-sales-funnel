@@ -69,7 +69,7 @@ grid-template-columns: 15vw 15vw 17vw 18vw 15vw;
 
 
 const Button = styled.button`
-
+margin-bottom: 1vh;
 `;
 
 // const Down = styled.text`

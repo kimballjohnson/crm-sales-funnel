@@ -1,59 +1,34 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import NewProspectForm from "./NewProspectForm"
+import {useNavigate} from "react-router";
 
-function CompanyCard({company, companies}) {
+function CompanyCard({company}) {
     const [expand, setExpand] = useState(false)
-    const [add, setAdd] = useState(false)
+
+    let navigate = useNavigate();
+
+    const toDetails = () => {
+        navigate(`/companies/${company.id}`)
+    }
+
     return(
         <div>
-            <Card onClick={() => setExpand(!expand)}>
+            <Card onClick={toDetails}>
             <h1>{company.name}</h1>
-            {!expand ? null : 
+            {/* {!expand ? null : 
             <div>
                 <h2>Employees:</h2>
             {company.prospects.map(prospect =>
-                <Test as={Link} to={`/prospects/${prospect.id}`}><li>{prospect.first_name} {prospect.last_name}</li></Test>
+                <Test as={Link} to={`/prospects/${prospect.id}`} key={prospect.id}><li>{prospect.first_name} {prospect.last_name}</li></Test>
                 )}
-                {/* <Button onClick={() => setAdd(true)}>Add a Prospect to this company</Button>
-                {!add ? null : 
-            <NewProspectForm companies={companies}/>
-                } */}
+                
             </div>
-            }
+            } */}
             </Card>
         </div>
     )
 }
-
-const Button = styled.button`
-
-  margin-top: 1%;
-  margin-left: 1%;
-  width: 8vw;
-  height: 6vh;
-  /* line-height: 50px; */
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  align-items: center;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  /* border: 3px solid #2E6268; */
-  transition: all .35s;
-  justify-content: center;
-  font-size: 1.5vh;
-  
-    &:hover {
-      width: 10vw;
-      border: 3px solid #7F7F7F;
-      background: transparent;
-      color: #7F7F7F;
-      cursor: pointer;
-    }
-  `;
 
 
 
@@ -65,21 +40,26 @@ const Card = styled.div`
 margin-top: 10px;
 margin-bottom: 10px;
 margin-right: 10px;
-margin-left: 10px
-height: 40vh;
-width: 30vw;
+margin-left: 10px;
+height: 30vh;
+width: 20vw;
 display: flex;
 flex-direction: column;
 justify-content: center; 
 align-items: center;
 text-align: center;
 border: 2px solid grey;
-background-color: grey;
-border-radius: 15px;
+background-color: transparent;
+transition: all .35s;
+// border-radius: 15px;
 &:hover {
   box-shadow: 0px 0px 15px 0px #848484;
   cursor: pointer;
   color: #8F8F8F;
+  height: 35vh;
+    width: 25vw;
+    background-color: rgb(37, 38, 51);
+    opacity: 0.5;
 }
 `;
 
