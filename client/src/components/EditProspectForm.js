@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 function EditProspectForm({prospect, company, companies, setAddingCompany, edit, setEdit}) {
     const [firstName, setFirstName] = useState(prospect.first_name)
     const [lastName, setLastName] = useState(prospect.last_name)
-    const [newCompany, setNewCompany] = useState(company)
+    const [newCompanyId, setNewCompanyId] = useState(company.id)
     const [stage, setStage] = useState(prospect.stage)
     const [probability, setProbability] = useState(prospect.probability)
     const [email, setEmail] = useState(prospect.email)
@@ -13,24 +13,22 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
     const navigate = useNavigate()
 
-    const editProspect = (firstName, lastName, company, stage, probability, email, phone) => {
+    const editProspect = (firstName, lastName, newCompanyId, stage, probability, email, phone) => {
         fetch(`http://localhost:3000/prospects/${prospect.id}`, {
-            // mode: 'no-cors',
           method: "PATCH",
           headers: { 
-            // 'Access-Control-Allow-Origin':'*' ,  
             "Content-Type": "application/json" },
           body: JSON.stringify({
             first_name: firstName,
             last_name: lastName,
-            company_id: company.id,
+            company_id: newCompanyId,
             stage: stage,
             probability: probability,
             email: email,
             phone: phone
           }),
         })
-        //   .then((response) => response.json())
+          .then((response) => response.json())
       };
 
       const makeNewCompany = () => {
@@ -40,12 +38,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        editProspect(firstName, lastName, company, stage, probability, email, phone);
-        // fetch(`/shipping_infos/${id}`)
-        // .then((res) => res.json())
-        // .then((data) => {
-        //   setShipping(data);
-        // });
+        editProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
       };
 
       const deleteProspect = (prospect) => {
@@ -55,7 +48,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
       };
 
       const handleCompanyChange = (e) => {
-        setNewCompany(e.target.value);
+        setNewCompanyId(e.target.value);
       };
 
       const stages = [
@@ -84,9 +77,9 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
     <h2>First Name: <Input required type="text" autoComplete="off" value={firstName} onChange={(e) => setFirstName(e.target.value)}></Input> </h2>
     <h2>Last Name: <Input required type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}></Input> </h2>
     <h2>Company:         
-        <Select value={newCompany} name="company" onChange={handleCompanyChange}>
+        <Select name="company" onChange={handleCompanyChange}>
             {companies.map(company => 
-                <option key={newCompany.id} value={newCompany}>{company.name}</option>
+                <option key={company.id} value={company.id}>{company.name}</option>
                 )}
         </Select> 
         </h2>
