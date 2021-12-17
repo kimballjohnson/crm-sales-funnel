@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import {useNavigate} from "react-router";
 import { Link } from "react-router-dom";
-
+import EditCompanyForm from "./EditCompanyForm"
 
 function CompanyDetails({setAddingProspect, loadingProspects}) {
     const [companyDetails, setCompanyDetails] = useState([]);
     const [companyProspects, setCompanyProspects] = useState([]);
+    const [edit, setEdit] = useState(false)
 
     let navigate = useNavigate();
 
@@ -30,6 +31,7 @@ useEffect(() => {
   return(
       <div>
 
+             {!edit ? 
          <Container>
             <h1>{companyDetails.name}</h1>
             {loadingProspects ? 
@@ -44,13 +46,28 @@ useEffect(() => {
             {companyProspects.map(prospect =>
                 <Li as={Link} to={`/prospects/${prospect.id}`} key={prospect.id}><ul>{prospect.first_name} {prospect.last_name}</ul></Li>
                 )}
-                <h3><Button onClick={addProspect}>Add a Prospect</Button></h3>
-                </div>}
-        </Container>
+                <Buttons>
+                <Button onClick={() => setEdit(!edit)}>Edit this Company</Button>
+                <Button onClick={addProspect}>Add a Prospect</Button>
+                </Buttons>
+                </div>
+                }
+            </Container>
+                :
+                <EditCompanyForm company={companyDetails} edit={edit} setEdit={setEdit}/>
+            }
     
       </div>
   )
 }
+
+
+const Buttons = styled.span`
+margin-left: 9vw;
+display: grid;
+grid-template-columns: 12vw 12vw;
+margin-bottom: 5vh;
+`;
 
 const Button = styled.button`
 

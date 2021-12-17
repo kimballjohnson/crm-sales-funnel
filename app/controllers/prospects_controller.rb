@@ -19,6 +19,11 @@ class ProspectsController < ApplicationController
         prospect = Prospect.create(prospect_params)
         render json: prospect
     end
+
+    def destroy
+        prospect =Prospect.find(params[:id])
+        prospect.delete
+    end
     
     private
     

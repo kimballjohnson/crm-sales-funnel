@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function NewProspectForm({prospect, company, companies, setAddingCompany, edit, setEdit}) {
+function EditProspectForm({prospect, company, companies, setAddingCompany, edit, setEdit}) {
     const [firstName, setFirstName] = useState(prospect.first_name)
     const [lastName, setLastName] = useState(prospect.last_name)
     const [newCompany, setNewCompany] = useState(company)
@@ -14,7 +14,7 @@ function NewProspectForm({prospect, company, companies, setAddingCompany, edit, 
     console.log(company)
 
     const editProspect = (firstName, lastName, company, stage, probability, email, phone) => {
-        fetch(`http://localhost:3000/prospects/`, {
+        fetch(`http://localhost:3000/prospects/${prospect.id}`, {
             // mode: 'no-cors',
           method: "PATCH",
           headers: { 
@@ -41,6 +41,12 @@ function NewProspectForm({prospect, company, companies, setAddingCompany, edit, 
         // .then((data) => {
         //   setShipping(data);
         // });
+      };
+
+      const deleteProspect = (prospect) => {
+        fetch(`/prospects/${prospect.id}`, {
+          method: "DELETE",
+        });
       };
 
       const handleCompanyChange = (e) => {
@@ -101,6 +107,7 @@ function NewProspectForm({prospect, company, companies, setAddingCompany, edit, 
     <h2>Phone: <Input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}></Input> </h2>
     <span>
         <Buttons>
+    <DeleteButton onClick={deleteProspect}>Delete Prospect</DeleteButton>
     <SubmitButton type="submit">Save Prospect</SubmitButton>
     <Button onClick={() => setEdit(!edit)}>{!edit ? 'Edit this Prospect' : 'Cancel'}</Button>
     </Buttons>
@@ -112,9 +119,9 @@ function NewProspectForm({prospect, company, companies, setAddingCompany, edit, 
 }
 
 const Buttons = styled.span`
-margin-left: 11vw;
+margin-left: 6vw;
 display: grid;
-grid-template-columns: 10vw 10vw;
+grid-template-columns: 10vw 10vw 10vw;
 `;
 
 const Input = styled.input`
@@ -171,6 +178,34 @@ const SubmitButton = styled.button.attrs({
       border: 3px solid #7F7F7F;
       background: transparent;
       color: #7F7F7F;
+      cursor: pointer;
+    }
+  `;
+
+  const DeleteButton = styled.button`
+
+  margin-top: 1%;
+  margin-left: 1%;
+  width: 8vw;
+  height: 6vh;
+  /* line-height: 50px; */
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  color: rgb(37, 38, 51);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* border: 3px solid #2E6268; */
+  transition: all .35s;
+  justify-content: center;
+  font-size: 1.5vh;
+  
+    &:hover {
+      width: 10vw;
+      border: 3px solid red;
+      background: transparent;
+      color: red;
       cursor: pointer;
     }
   `;
@@ -235,4 +270,4 @@ const NavButton = styled.button`
   }
 `;
 
-export default NewProspectForm
+export default EditProspectForm

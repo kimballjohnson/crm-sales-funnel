@@ -19,6 +19,11 @@ class CompaniesController < ApplicationController
         company = Company.create(company_params)
         render json: company
     end
+
+    def destroy
+        company = Company.find(params[:id])
+        company.delete
+    end
     
     private
     
