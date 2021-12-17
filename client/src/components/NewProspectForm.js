@@ -83,7 +83,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
         <h3>Company not listed?</h3>
             <Button onClick={makeNewCompany}>Add a Company</Button>
     <h2>Stage: 
-            <Select name="stage" onChange={handleStageChange}>
+            <Select required value={stage} name="stage" onChange={handleStageChange}>
             {stages.map(stage => 
                 <option value={stage} key={stage.id}>{stage}</option>
                 )}

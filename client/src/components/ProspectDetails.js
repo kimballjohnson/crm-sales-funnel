@@ -3,15 +3,12 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import {useNavigate} from "react-router";
 import EditProspectForm from "./EditProspectForm"
-
+import { Link } from "react-router-dom";
 
 function ProspectDetails({companies, setAddingCompany}) {
     const [prospectDetails, setProspectDetails] = useState([]);
     const [company, setCompany] = useState({});
     const [edit, setEdit] = useState(false)
-    const [loading, setLoading] = useState(false)
-
-    let navigate = useNavigate();
 
     const id = useParams().id;
 
@@ -32,7 +29,7 @@ useEffect(() => {
          <Container>
             <h3>First Name: {prospectDetails.first_name}</h3>
             <h3>Last Name: {prospectDetails.last_name}</h3>
-            <h3>Current Company: {company === null ? "None" : company.name}</h3>
+            <h3>Current Company: <CompanyLink as={Link} to={`/companies/${company.id}`}>{company === null ? "None" : company.name}</CompanyLink></h3>
             <h3>Stage: {prospectDetails.stage}</h3>
             <h3>Probability: {prospectDetails.probability}%</h3>
             <h5>Contact Info:</h5>
@@ -96,6 +93,10 @@ const Container = styled.div`
   &::-webkit-scrollbar {
       width: 10px;
   }
+`;
+
+const CompanyLink = styled.div`
+
 `;
 
 

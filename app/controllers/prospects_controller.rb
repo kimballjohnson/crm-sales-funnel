@@ -28,8 +28,8 @@ class ProspectsController < ApplicationController
     end
 
     def destroy
-        prospect =Prospect.find(params[:id])
-        prospect.delete
+        prospect = Prospect.find(params[:id])
+        prospect.destroy
     end
     
     private

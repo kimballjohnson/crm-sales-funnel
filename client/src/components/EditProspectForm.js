@@ -39,13 +39,15 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
       const handleSubmit = (e) => {
         e.preventDefault();
         editProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
+        window.location.reload(false)
+          setEdit(false)
       };
 
-      const deleteProspect = (prospect) => {
-        fetch(`/prospects/${prospect.id}`, {
-          method: "DELETE",
-        });
-      };
+    //   const deleteProspect = (prospect) => {
+    //     fetch(`/prospects/${prospect.id}`, {
+    //       method: "DELETE",
+    //     });
+    //   };
 
       const handleCompanyChange = (e) => {
         setNewCompanyId(e.target.value);
@@ -68,6 +70,19 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
       const handleProbabilityChange = (e) => {
         setProbability(e.target.value);
       };
+
+
+      const deleteProspect = (prospectId) => {
+        fetch(`/prospects/${prospectId}`, {
+          method: "DELETE",
+        });
+      };
+
+      const handleDelete = () => {
+          deleteProspect(prospect.id)
+          navigate(`/prospects`)
+          window.location.reload(false)
+      }
 
     return(
         <div>
@@ -103,20 +118,22 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
     <h2>Email: <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)}></Input> </h2>
     <h2>Phone: <Input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}></Input> </h2>
     <span>
-        <Buttons>
-    <DeleteButton onClick={deleteProspect}>Delete Prospect</DeleteButton>
     <SubmitButton type="submit">Save Prospect</SubmitButton>
-    <Button onClick={() => setEdit(!edit)}>{!edit ? 'Edit this Prospect' : 'Cancel'}</Button>
-    </Buttons>
     </span>
     </form>
+        <Buttons>
+    <DeleteButton onClick={handleDelete}>Delete Prospect</DeleteButton>
+    <Button onClick={() => setEdit(!edit)}>{!edit ? 'Edit this Prospect' : 'Cancel'}</Button>
+    </Buttons>
     </Container>
         </div>
     )
 }
 
+
+
 const Buttons = styled.span`
-margin-left: 6vw;
+margin-left: 10.5vw;
 display: grid;
 grid-template-columns: 10vw 10vw 10vw;
 `;
@@ -241,7 +258,7 @@ const SubmitButton = styled.button.attrs({
   margin-right: 30vw;
   margin-top: 5vh;
   margin-bottom: 20vh;
-  max-height: 100vh;
+  max-height: 120vh;
   background-color: #FFFFFF;
   border-radius: 10px;
   overflow-y: auto;

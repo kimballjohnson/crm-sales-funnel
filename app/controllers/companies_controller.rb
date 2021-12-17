@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
 
     def destroy
         company = Company.find(params[:id])
-        company.delete
+        company.destroy
     end
     
     private
