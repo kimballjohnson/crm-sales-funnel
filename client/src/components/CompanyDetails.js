@@ -42,10 +42,14 @@ useEffect(() => {
          </Loading>
             :
             <div>
+              {companyProspects.length === 0 ? <h3>There are no prospects currently employed at {companyDetails.name}</h3>
+              :
+              <div>
                 <h3>Employees:</h3>
             {companyProspects.map(prospect =>
                 <Li as={Link} to={`/prospects/${prospect.id}`} key={prospect.id}><ul>{prospect.first_name} {prospect.last_name}</ul></Li>
                 )}
+                </div>}
                 <Buttons>
                 <Button onClick={() => setEdit(!edit)}>Edit this Company</Button>
                 <Button onClick={addProspect}>Add a Prospect</Button>

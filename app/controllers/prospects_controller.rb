@@ -1,5 +1,6 @@
 class ProspectsController < ApplicationController
     wrap_parameters format: []
+    skip_before_action :verify_authenticity_token
 
     def index
         prospects = Prospect.order('last_name ASC') 
@@ -17,6 +18,12 @@ class ProspectsController < ApplicationController
 
     def create 
         prospect = Prospect.create(prospect_params)
+        render json: prospect
+    end
+
+    def update
+        prospect = Prospect.find(params[:id])
+        prospect.update(prospect_params)
         render json: prospect
     end
 

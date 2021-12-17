@@ -6,12 +6,11 @@ function NewCompanyForm({setAddingCompany}) {
 
     const createCompany = (name) => {
         fetch("http://localhost:3000/companies", {
-            // mode: 'no-cors',
           method: "POST",
           headers : { 
+           
             'Content-Type': 'application/json'
-            // ,
-            // 'Accept': 'application/json'
+         
            }
     ,
           body: JSON.stringify({
@@ -24,14 +23,11 @@ function NewCompanyForm({setAddingCompany}) {
       const handleSubmit = (e) => {
         e.preventDefault();
         createCompany(name);
-        // fetch(`/shipping_infos/${id}`)
-        // .then((res) => res.json())
-        // .then((data) => {
-        //   setShipping(data);
-        // });
+        setName('')
+        setAddingCompany(false)
+        window.location.reload(false)
       };
 
-    
     return(
         <div>
             <Container>

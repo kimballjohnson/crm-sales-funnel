@@ -1,14 +1,10 @@
 class CompaniesController < ApplicationController
     wrap_parameters format: []
+    skip_before_action :verify_authenticity_token
 
     def index
         companies = Company.order('name ASC') 
         render json: companies
-    end
-
-    def unemployed
-        company = Company.find_by_name(null)
-        render json: company
     end
 
     def show
@@ -18,6 +14,12 @@ class CompaniesController < ApplicationController
         else
             render json: {error: "Company not found"}, status: :unprocessable_entity
         end
+    end
+
+    def update
+        company = Company.find(params[:id])
+        company.update(company_params)
+        render json: company
     end
 
     def create 

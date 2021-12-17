@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [company, setCompany] = useState({})
+    const [newCompany, setNewCompany] = useState({})
     const [stage, setStage] = useState('')
     const [probability, setProbability] = useState(0)
     const [email, setEmail] = useState('')
@@ -13,29 +13,28 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
 
     const navigate = useNavigate()
 
-    const createProspect = (firstName, lastName, company, stage, probability, email, phone) => {
+    const createProspect = (firstName, lastName, newCompany, stage, probability, email, phone) => {
         fetch(`http://localhost:3000/prospects/`, {
-            // mode: 'no-cors',
           method: "POST",
-          headers: { 
-            // 'Access-Control-Allow-Origin':'*' ,  
+          headers: {  
             "Content-Type": "application/json" },
           body: JSON.stringify({
             first_name: firstName,
             last_name: lastName,
-            company_id: company.id,
+            company_id: newCompany.id,
             stage: stage,
             probability: probability,
             email: email,
             phone: phone
           }),
         })
-        //   .then((response) => response.json())
+          .then((response) => response.json())
       };
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        createProspect(firstName, lastName, company, stage, probability, email, phone);
+        createProspect(firstName, lastName, newCompany, stage, probability, email, phone);
+        setAddingProspect(false)
         // fetch(`/shipping_infos/${id}`)
         // .then((res) => res.json())
         // .then((data) => {
@@ -44,10 +43,10 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
       };
 
       const handleCompanyChange = (e) => {
-        setCompany(e.target.value);
+        setNewCompany(e.target.value);
       };
 
-      const newCompany = () => {
+      const makeNewCompany = () => {
         setAddingCompany(true) 
         navigate(`/companies`)
       }
@@ -80,12 +79,12 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     <h2>Company:         
         <Select name="company" onChange={handleCompanyChange}>
             {companies.map(company => 
-                <option value={company} key={company.id}>{company.name}</option>
+                <option value={newCompany} key={newCompany.id}>{company.name}</option>
                 )}
         </Select> 
         </h2>
         <h3>Company not listed?</h3>
-            <Button onClick={newCompany}>Add a Company</Button>
+            <Button onClick={makeNewCompany}>Add a Company</Button>
     <h2>Stage: 
             <Select name="stage" onChange={handleStageChange}>
             {stages.map(stage => 

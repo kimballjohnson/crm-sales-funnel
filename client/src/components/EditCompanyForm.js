@@ -1,35 +1,49 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {useNavigate} from "react-router";
 
 function EditCompanyForm({company, edit, setEdit}) {
 
     const [newCompany, setNewCompany] = useState(company.name)
    
+    let navigate = useNavigate();
 
-    const editCompany = (newCompany) => {
-        fetch(`http://localhost:3000/companies/${company.id}`, {
-            // mode: 'no-cors',
+    const editCompany = (companyId, newCompany) => {
+        fetch(`http://localhost:3000/companies/${companyId}`, {
           method: "PATCH",
           headers: { 
-            // 'Access-Control-Allow-Origin':'*' ,  
             "Content-Type": "application/json" },
           body: JSON.stringify({
             name: newCompany
           }),
         })
-        //   .then((response) => response.json())
+          .then((response) => response.json())
       };
 
-      const deleteCompany = (company) => {
-        fetch(`/companies/${company.id}`, {
+      const handleEdit = (e) => {
+          e.preventDefault()
+          editCompany(company.id, newCompany)
+          window.location.reload(false)
+          setEdit(false)
+      }
+
+      const deleteCompany = (companyId) => {
+        fetch(`/companies/${companyId}`, {
           method: "DELETE",
         });
       };
 
+      const handleDelete = () => {
+          deleteCompany(company.id)
+          navigate(`/companies`)
+          window.location.reload(false)
+      }
+
       const handleSubmit = (e) => {
         e.preventDefault();
         editCompany(newCompany);
+        setEdit(false)
       };
 
     //   const handleCompanyChange = (e) => {
@@ -40,15 +54,16 @@ function EditCompanyForm({company, edit, setEdit}) {
         <div>
             <Container>
          <h1>Edit Company:</h1>
-    <form onSubmit={handleSubmit} autoComplete="off">
+    <form onSubmit={handleEdit} autoComplete="off">
     <h2>Company Name: <Input required type="text" autoComplete="off" value={newCompany} onChange={(e) => setNewCompany(e.target.value)}></Input> </h2>
-    
-        <Buttons>
-    <DeleteButton onClick={deleteCompany}>Delete Company</DeleteButton>
+
     <SubmitButton type="submit">Save Company</SubmitButton>
-    </Buttons>
+
     </form>
+    <Buttons>
+    <DeleteButton onClick={handleDelete}>Delete Company</DeleteButton>
     <Button onClick={() => setEdit(!edit)}>Cancel</Button>
+    </Buttons>
     </Container>
         </div>
     )
