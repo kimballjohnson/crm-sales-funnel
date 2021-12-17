@@ -46,7 +46,7 @@ function App() {
             <Route path="/prospects" element={  <ProspectsPage
               prospects={prospects}
               loading={loadingProspects}
-              companies={existingCompanies}
+              companies={companies}
               addingProspect={addingProspect}
               setAddingProspect={setAddingProspect}
               addingCompany={addingCompany}

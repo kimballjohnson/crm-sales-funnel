@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 function EditProspectForm({prospect, company, companies, setAddingCompany, edit, setEdit}) {
     const [firstName, setFirstName] = useState(prospect.first_name)
@@ -11,7 +11,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
     const [email, setEmail] = useState(prospect.email)
     const [phone, setPhone] = useState(prospect.phone)
 
-    console.log(company)
+    const navigate = useNavigate()
 
     const editProspect = (firstName, lastName, company, stage, probability, email, phone) => {
         fetch(`http://localhost:3000/prospects/${prospect.id}`, {
@@ -33,6 +33,11 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
         //   .then((response) => response.json())
       };
 
+      const makeNewCompany = () => {
+        setAddingCompany(true) 
+        navigate(`/companies`)
+      }
+
       const handleSubmit = (e) => {
         e.preventDefault();
         editProspect(firstName, lastName, company, stage, probability, email, phone);
@@ -51,7 +56,6 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
       const handleCompanyChange = (e) => {
         setNewCompany(e.target.value);
-        console.log(company.name);
       };
 
       const stages = [
@@ -64,7 +68,6 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
        const handleStageChange = (e) => {
         setStage(e.target.value);
-        console.log(stage)
       };
 
       const probabilities = Array.from(Array(106).keys())
@@ -81,13 +84,14 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
     <h2>First Name: <Input required type="text" autoComplete="off" value={firstName} onChange={(e) => setFirstName(e.target.value)}></Input> </h2>
     <h2>Last Name: <Input required type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}></Input> </h2>
     <h2>Company:         
-        <Select value={company.name} name="company" onChange={handleCompanyChange}>
+        <Select value={newCompany} name="company" onChange={handleCompanyChange}>
             {companies.map(company => 
-                <option key={company.id} value={company}>{company.name}</option>
+                <option key={newCompany.id} value={newCompany}>{company.name}</option>
                 )}
         </Select> 
         </h2>
-        <h3>Company not listed? <NavButton onClick={() => setAddingCompany(true)} as={Link} to={`/companies`}>Add a Company</NavButton></h3>
+        <h3>Company not listed?</h3>
+        <Button onClick={makeNewCompany}>Add a Company</Button>
     <h2>Stage: 
             <Select value={stage} name="stage" onChange={handleStageChange}>
             {stages.map(stage => 

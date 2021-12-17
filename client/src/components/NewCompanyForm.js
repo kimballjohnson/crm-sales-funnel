@@ -52,6 +52,7 @@ const Buttons = styled.span`
 margin-left: 11vw;
 display: grid;
 grid-template-columns: 10vw 10vw;
+margin-bottom: 3vh;
 `;
 
 const Container = styled.div`
@@ -73,7 +74,7 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-    width: 100%;
+    width: 60%;
     border: none;
     border-bottom: 2px solid #E3E3E3;
 font-size: large;

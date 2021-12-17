@@ -2,8 +2,13 @@ class CompaniesController < ApplicationController
     wrap_parameters format: []
 
     def index
-        companies = Company.all 
+        companies = Company.order('name ASC') 
         render json: companies
+    end
+
+    def unemployed
+        company = Company.find_by_name(null)
+        render json: company
     end
 
     def show

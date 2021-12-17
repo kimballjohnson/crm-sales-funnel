@@ -15,7 +15,7 @@ function HomePage() {
 
 <h3>On the prospects page you can browse through prospects, search prospects by name, or create a new prospect. Upon selecting a specific prospect, you can view their full profile as well as edit their information.</h3>
 
-<h3>On the companies page you can browse through companies, search companies by name, or create a new company. Upon selecting a specific company, you can also view all prospects currently working at that company.</h3>
+<h3>On the companies page you can browse through companies, search companies by name, or create a new company. Upon selecting a specific company, you can view all prospects currently working at that company as well as edit the company name.</h3>
 
 <h2>I had a blast working on this site and really hope you enjoy it!</h2>
 

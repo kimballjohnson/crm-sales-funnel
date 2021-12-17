@@ -2,7 +2,7 @@ class ProspectsController < ApplicationController
     wrap_parameters format: []
 
     def index
-        prospects = Prospect.all 
+        prospects = Prospect.order('last_name ASC') 
         render json: prospects
     end
 

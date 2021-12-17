@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 
 function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
@@ -118,12 +117,13 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
 
 const Buttons = styled.span`
 margin-left: 11vw;
+margin-bottom: 5vh;
 display: grid;
 grid-template-columns: 10vw 10vw;
 `;
 
 const Input = styled.input`
-    width: 100%;
+    width: 60%;
     border: none;
     border-bottom: 2px solid #E3E3E3;
 font-size: large;
