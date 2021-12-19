@@ -21,14 +21,14 @@ function App() {
 
   useEffect(() => {
     setLoadingProspects(true)
-    fetch("/prospects").then((r) => {
+    fetch("/api/prospects").then((r) => {
       if (r.ok) {
         r.json().then((prospects) => setProspects(prospects));
         setLoadingProspects(false)
       }
     });
     setLoadingCompanies(true)
-    fetch("/companies").then((r) => {
+    fetch("/api/companies").then((r) => {
       if (r.ok) {
         r.json().then((companies) => setCompanies(companies));
         setLoadingCompanies(false)
@@ -43,7 +43,7 @@ function App() {
       <Router>
         <NavBar />
           <Routes>
-            <Route path="/prospects" element={  <ProspectsPage
+            <Route path="/api/prospects" element={  <ProspectsPage
               prospects={prospects}
               loading={loadingProspects}
               companies={companies}
@@ -53,21 +53,21 @@ function App() {
               setAddingCompany={setAddingCompany}
 />}/>
 
-            <Route path="/prospects/:id" element={  <ProspectDetails
+            <Route path="/api/prospects/:id" element={  <ProspectDetails
               prospects={prospects}
               companies={companies}
               setAddingCompany={setAddingCompany}
             />}/>
           
 
-            <Route path="/companies" element={  <CompaniesPage
+            <Route path="/api/companies" element={  <CompaniesPage
               companies={existingCompanies}
               addingCompany={addingCompany}
               setAddingCompany={setAddingCompany}
               loading={loadingCompanies}
             />}/>
 
-            <Route path="/companies/:id" element={  <CompanyDetails
+            <Route path="/api/companies/:id" element={  <CompanyDetails
               prospects={prospects}
              setAddingProspect={setAddingProspect}
              loadingProspects={loadingProspects}

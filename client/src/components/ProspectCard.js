@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function ProspectCard({prospect, companies}) {
 
-    const src = `/prospects/${prospect.id}`;
+    const src = `/api/prospects/${prospect.id}`;
 
     const [expand, setExpand] = useState(false)
 
