@@ -19,7 +19,7 @@
     "fontface-styled-components": "^1.2.1"
   },
   "engines": {
-    "node": ">= 14"
+    "node": "16.4.1"
   },
   "scripts": {
     "build": "npm install --prefix client && npm run build --prefix client",
