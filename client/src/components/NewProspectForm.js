@@ -35,7 +35,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
         e.preventDefault();
         createProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
         setAddingProspect(false)
-        window.location.reload(false)
+        // window.location.reload(false)
       };
 
       const handleCompanyChange = (e) => {

@@ -39,7 +39,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
       const handleSubmit = (e) => {
         e.preventDefault();
         editProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
-        window.location.reload(false)
+        // window.location.reload(false)
           setEdit(false)
       };
 
@@ -81,7 +81,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
       const handleDelete = () => {
           deleteProspect(prospect.id)
           navigate(`/prospects`)
-          window.location.reload(false)
+        //   window.location.reload(false)
       }
 
     return(
