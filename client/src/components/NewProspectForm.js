@@ -14,7 +14,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     const navigate = useNavigate()
 
     const createProspect = (firstName, lastName, newCompanyId, stage, probability, email, phone) => {
-        fetch(`/api/prospects/`, {
+        fetch(`/prospects/`, {
           method: "POST",
           headers: {  
             "Content-Type": "application/json" },
@@ -45,7 +45,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
 
       const makeNewCompany = () => {
         setAddingCompany(true) 
-        navigate(`/api/companies`)
+        navigate(`/companies`)
       }
 
       const stages = [

@@ -6,11 +6,11 @@ function NavBar() {
     return(
         <div>
             <Container>
-            <NavButton as={Link} to={`/api/prospects`}>
+            <NavButton as={Link} to={`/prospects`}>
                 Prospects
             </NavButton>
 
-            <NavButton as={Link} to={`/api/companies`}>
+            <NavButton as={Link} to={`/companies`}>
                 Companies
             </NavButton>
 

@@ -14,7 +14,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
     const navigate = useNavigate()
 
     const editProspect = (firstName, lastName, newCompanyId, stage, probability, email, phone) => {
-        fetch(`/api/prospects/${prospect.id}`, {
+        fetch(`/prospects/${prospect.id}`, {
           method: "PATCH",
           headers: { 
             "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
       const makeNewCompany = () => {
         setAddingCompany(true) 
-        navigate(`/api/companies`)
+        navigate(`/companies`)
       }
 
       const handleSubmit = (e) => {
@@ -73,14 +73,14 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
 
       const deleteProspect = (prospectId) => {
-        fetch(`/api/prospects/${prospectId}`, {
+        fetch(`/prospects/${prospectId}`, {
           method: "DELETE",
         });
       };
 
       const handleDelete = () => {
           deleteProspect(prospect.id)
-          navigate(`/api/prospects`)
+          navigate(`/prospects`)
         //   window.location.reload(false)
       }
 

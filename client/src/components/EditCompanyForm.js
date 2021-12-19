@@ -10,7 +10,7 @@ function EditCompanyForm({company, edit, setEdit}) {
     let navigate = useNavigate();
 
     const editCompany = (companyId, newCompany) => {
-        fetch(`/api/companies/${companyId}`, {
+        fetch(`/companies/${companyId}`, {
           method: "PATCH",
           headers: { 
             "Content-Type": "application/json" },
@@ -29,14 +29,14 @@ function EditCompanyForm({company, edit, setEdit}) {
       }
 
       const deleteCompany = (companyId) => {
-        fetch(`/api/companies/${companyId}`, {
+        fetch(`/companies/${companyId}`, {
           method: "DELETE",
         });
       };
 
       const handleDelete = () => {
           deleteCompany(company.id)
-          navigate(`/api/companies`)
+          navigate(`/companies`)
         //   window.location.reload(false)
       }
 

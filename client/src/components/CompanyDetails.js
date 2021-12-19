@@ -16,11 +16,11 @@ function CompanyDetails({setAddingProspect, loadingProspects}) {
 
     const addProspect = () => {
         setAddingProspect(true)
-        navigate(`/api/prospects`)
+        navigate(`/prospects`)
     }
 
 useEffect(() => {
-    fetch(`/api/companies/${id}`)
+    fetch(`/companies/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCompanyDetails(data);
@@ -47,7 +47,7 @@ useEffect(() => {
               <div>
                 <h3>Employees:</h3>
             {companyProspects.map(prospect =>
-                <Li as={Link} to={`/api/prospects/${prospect.id}`} key={prospect.id}><ul>{prospect.first_name} {prospect.last_name}</ul></Li>
+                <Li as={Link} to={`/prospects/${prospect.id}`} key={prospect.id}><ul>{prospect.first_name} {prospect.last_name}</ul></Li>
                 )}
                 </div>}
                 <Buttons>
