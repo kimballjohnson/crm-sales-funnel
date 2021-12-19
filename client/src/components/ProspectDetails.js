@@ -13,7 +13,7 @@ function ProspectDetails({companies, setAddingCompany}) {
     const id = useParams().id;
 
 useEffect(() => {
-    fetch(`http://localhost:3000/prospects/${id}`)
+    fetch(`/prospects/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProspectDetails(data);

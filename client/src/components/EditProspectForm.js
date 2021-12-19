@@ -14,7 +14,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
     const navigate = useNavigate()
 
     const editProspect = (firstName, lastName, newCompanyId, stage, probability, email, phone) => {
-        fetch(`http://localhost:3000/prospects/${prospect.id}`, {
+        fetch(`/prospects/${prospect.id}`, {
           method: "PATCH",
           headers: { 
             "Content-Type": "application/json" },

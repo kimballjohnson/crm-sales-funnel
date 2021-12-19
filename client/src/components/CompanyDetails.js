@@ -20,7 +20,7 @@ function CompanyDetails({setAddingProspect, loadingProspects}) {
     }
 
 useEffect(() => {
-    fetch(`http://localhost:3000/companies/${id}`)
+    fetch(`/companies/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCompanyDetails(data);

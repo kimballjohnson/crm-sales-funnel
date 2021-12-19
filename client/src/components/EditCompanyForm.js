@@ -10,7 +10,7 @@ function EditCompanyForm({company, edit, setEdit}) {
     let navigate = useNavigate();
 
     const editCompany = (companyId, newCompany) => {
-        fetch(`http://localhost:3000/companies/${companyId}`, {
+        fetch(`/companies/${companyId}`, {
           method: "PATCH",
           headers: { 
             "Content-Type": "application/json" },

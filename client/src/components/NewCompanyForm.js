@@ -5,7 +5,7 @@ function NewCompanyForm({setAddingCompany}) {
     const [name, setName] = useState('')
 
     const createCompany = (name) => {
-        fetch("http://localhost:3000/companies", {
+        fetch("/companies", {
           method: "POST",
           headers : { 
            

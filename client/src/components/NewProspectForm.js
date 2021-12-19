@@ -14,7 +14,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     const navigate = useNavigate()
 
     const createProspect = (firstName, lastName, newCompanyId, stage, probability, email, phone) => {
-        fetch(`http://localhost:3000/prospects/`, {
+        fetch(`/prospects/`, {
           method: "POST",
           headers: {  
             "Content-Type": "application/json" },
