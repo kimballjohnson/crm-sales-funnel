@@ -7,11 +7,14 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "turbolinks": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
     "react-router-dom": "^5.3.0",
     "react-select": "^4.3.1"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "webpack-dev-server": "^3",
     "@types/react-paginate": "^7.1.1",
     "fontface-styled-components": "^1.2.1"
   },
