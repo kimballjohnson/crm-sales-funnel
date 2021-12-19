@@ -21,14 +21,14 @@ function App() {
 
   useEffect(() => {
     setLoadingProspects(true)
-    fetch("/prospects").then((r) => {
+    fetch("http://localhost:3000/prospects").then((r) => {
       if (r.ok) {
         r.json().then((prospects) => setProspects(prospects));
         setLoadingProspects(false)
       }
     });
     setLoadingCompanies(true)
-    fetch("/companies").then((r) => {
+    fetch("http://localhost:3000/companies").then((r) => {
       if (r.ok) {
         r.json().then((companies) => setCompanies(companies));
         setLoadingCompanies(false)
