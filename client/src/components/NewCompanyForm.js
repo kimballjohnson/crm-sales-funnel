@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {useNavigate} from 'react-router-dom';
 
 function NewCompanyForm({setAddingCompany}) {
     const [name, setName] = useState('')
+
+    let navigate = useNavigate();
 
     const createCompany = (name) => {
         fetch("/companies", {
@@ -25,7 +28,8 @@ function NewCompanyForm({setAddingCompany}) {
         createCompany(name);
         setName('')
         setAddingCompany(false)
-        // window.location.reload(false)
+        navigate(`/`)
+        window.location.reload(false)
       };
 
     return(
