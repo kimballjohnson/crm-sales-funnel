@@ -1,1 +1,1 @@
-app.use(cors({origin: "*",}))
+// app.use(cors({origin: "*",}))
