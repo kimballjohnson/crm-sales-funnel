@@ -28,7 +28,7 @@ useEffect(() => {
          <Container>
             <h3>First Name: {prospectDetails.first_name}</h3>
             <h3>Last Name: {prospectDetails.last_name}</h3>
-            <h3>Current Company: <CompanyLink as={Link} to={`/companies/${company.id}`}>{company === null ? "None" : company.name}</CompanyLink></h3>
+            <h3>Current Company: <CompanyLink as={Link} to={`/companiespage/${company.id}`}>{company === null ? "None" : company.name}</CompanyLink></h3>
             <h3>Stage: {prospectDetails.stage}</h3>
             <h3>Probability: {prospectDetails.probability}%</h3>
             <h5>Contact Info:</h5>
