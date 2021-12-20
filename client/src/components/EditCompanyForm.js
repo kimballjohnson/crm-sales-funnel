@@ -23,7 +23,7 @@ function EditCompanyForm({company, edit, setEdit}) {
       const handleEdit = (e) => {
           e.preventDefault()
           editCompany(company.id, newCompany)
-          navigate(`/`)
+          navigate(`/companiespage`)
           window.location.reload(false)
           setEdit(false)
       }
@@ -36,7 +36,7 @@ function EditCompanyForm({company, edit, setEdit}) {
 
       const handleDelete = () => {
           deleteCompany(company.id)
-          navigate(`/`)
+          navigate(`/companiespage`)
           window.location.reload(false)
       }
 

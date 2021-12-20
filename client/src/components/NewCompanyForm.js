@@ -28,7 +28,7 @@ function NewCompanyForm({setAddingCompany}) {
         createCompany(name);
         setName('')
         setAddingCompany(false)
-        navigate(`/`)
+        navigate(`/companiespage`)
         window.location.reload(false)
       };
 

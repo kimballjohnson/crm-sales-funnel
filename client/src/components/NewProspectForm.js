@@ -37,7 +37,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
         e.preventDefault();
         createProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
         setAddingProspect(false)
-        navigate(`/`)
+        navigate(`/prospectspage`)
         window.location.reload(false)
       };
 
@@ -48,7 +48,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
 
       const makeNewCompany = () => {
         setAddingCompany(true) 
-        navigate(`/companies`)
+        navigate(`/companiespage`)
       }
 
       const stages = [

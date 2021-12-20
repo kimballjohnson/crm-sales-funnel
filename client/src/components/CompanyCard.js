@@ -7,7 +7,7 @@ function CompanyCard({company}) {
     let navigate = useNavigate();
 
     const toDetails = () => {
-        navigate(`/companies/${company.id}`)
+        navigate(`/companiespage/${company.id}`)
     }
 
     return(

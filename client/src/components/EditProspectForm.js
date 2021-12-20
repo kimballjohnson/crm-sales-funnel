@@ -33,13 +33,13 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
       const makeNewCompany = () => {
         setAddingCompany(true) 
-        navigate(`/companies`)
+        navigate(`/companiespage`)
       }
 
       const handleSubmit = (e) => {
         e.preventDefault();
         editProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
-        navigate(`/`)
+        navigate(`/prospectspage`)
         window.location.reload(false)
           setEdit(false)
       };
@@ -75,7 +75,7 @@ function EditProspectForm({prospect, company, companies, setAddingCompany, edit,
 
       const handleDelete = () => {
           deleteProspect(prospect.id)
-          navigate(`/`)
+          navigate(`/prospectspage`)
           window.location.reload(false)
       }
 
