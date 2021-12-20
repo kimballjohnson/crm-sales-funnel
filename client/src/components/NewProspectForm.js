@@ -11,6 +11,8 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
 
+    console.log(companies)
+
     const navigate = useNavigate()
 
     const createProspect = (firstName, lastName, newCompanyId, stage, probability, email, phone) => {
