@@ -47,7 +47,7 @@ useEffect(() => {
               <div>
                 <h3>Employees:</h3>
             {companyProspects.map(prospect =>
-                <Li as={Link} to={`/prospects/${prospect.id}`} key={prospect.id}><ul>{prospect.first_name} {prospect.last_name}</ul></Li>
+                <Li as={Link} to={`/prospectspage/${prospect.id}`} key={prospect.id}><ul>{prospect.first_name} {prospect.last_name}</ul></Li>
                 )}
                 </div>}
                 <Buttons>
