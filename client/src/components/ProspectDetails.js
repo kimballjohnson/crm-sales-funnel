@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import {useNavigate} from "react-router";
 import EditProspectForm from "./EditProspectForm"
 import { Link } from "react-router-dom";
 

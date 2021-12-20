@@ -4,7 +4,6 @@ import styled from "styled-components";
 import NewCompanyForm from "./NewCompanyForm"
 
 function CompaniesPage({companies, addingCompany, setAddingCompany, loading}) {
-    // const [adding, setAdding] = useState(false)
     const [search, setSearch] = useState('')
 
     const companiesToDisplay = companies.filter(company => 
@@ -23,12 +22,9 @@ function CompaniesPage({companies, addingCompany, setAddingCompany, loading}) {
             : 
             <div> 
             <Input type='text' placeholder="Search for a Company" value={search} onChange={(e) => setSearch(e.target.value)}/>
-        {/* <Buttons> */}
-            {/* {addingCompany ? null : <Button onClick={() => setAddingCompany(true)}>Add New Company</Button>} */}
             {!addingCompany ? 
             <Button onClick={() => setAddingCompany(true)}>Add New Company</Button>
             : <NewCompanyForm setAddingCompany={setAddingCompany}/>}
-        {/* </Buttons> */}
             {companiesToDisplay.length === 0 ? <h2>No Companies Matched Your Search</h2> :
             <Container>
         {companiesToDisplay.map(company => 

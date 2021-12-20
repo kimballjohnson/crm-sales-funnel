@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import {useNavigate} from "react-router";
 
 function EditCompanyForm({company, edit, setEdit}) {
@@ -24,7 +23,8 @@ function EditCompanyForm({company, edit, setEdit}) {
       const handleEdit = (e) => {
           e.preventDefault()
           editCompany(company.id, newCompany)
-        //   window.location.reload(false)
+          navigate(`/`)
+          window.location.reload(false)
           setEdit(false)
       }
 
@@ -36,19 +36,9 @@ function EditCompanyForm({company, edit, setEdit}) {
 
       const handleDelete = () => {
           deleteCompany(company.id)
-          navigate(`/companies`)
-        //   window.location.reload(false)
+          navigate(`/`)
+          window.location.reload(false)
       }
-
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        editCompany(newCompany);
-        setEdit(false)
-      };
-
-    //   const handleCompanyChange = (e) => {
-    //     setNewCompany(e.target.value);
-    //   };
 
     return(
         <div>
@@ -77,20 +67,6 @@ grid-template-columns: 10vw 10vw 10vw;
 
 const Input = styled.input`
     width: 100%;
-    border: none;
-    border-bottom: 2px solid #E3E3E3;
-font-size: large;
-margin-top: 2vh;
-margin-left: 1vw;
-outline: none;
-&:focus {
-    outline: none;
-    border-bottom: 2px solid #7F7F7F;
-}
-`;
-
-const Select = styled.select`
-    
     border: none;
     border-bottom: 2px solid #E3E3E3;
 font-size: large;
@@ -205,19 +181,6 @@ const SubmitButton = styled.button.attrs({
   box-shadow: 0px 0px 5px 0px #DBDBDB;
   &::-webkit-scrollbar {
       width: 10px;
-  }
-`;
-
-const NavButton = styled.button`
-  cursor: pointer;
-  font-size: 1.5rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  // padding: 8px 16px;
-  text-decoration: none;
-  a {
-    color: inherit;
-    text-decoration: none;
   }
 `;
 

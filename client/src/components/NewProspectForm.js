@@ -35,7 +35,8 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
         e.preventDefault();
         createProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
         setAddingProspect(false)
-        // window.location.reload(false)
+        navigate(`/`)
+        window.location.reload(false)
       };
 
       const handleCompanyChange = (e) => {
@@ -220,19 +221,6 @@ const SubmitButton = styled.button.attrs({
   box-shadow: 0px 0px 5px 0px #DBDBDB;
   &::-webkit-scrollbar {
       width: 10px;
-  }
-`;
-
-const NavButton = styled.button`
-  cursor: pointer;
-  font-size: 1.5rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  // padding: 8px 16px;
-  text-decoration: none;
-  a {
-    color: inherit;
-    text-decoration: none;
   }
 `;
 

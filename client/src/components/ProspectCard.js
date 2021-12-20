@@ -21,11 +21,8 @@ function ProspectCard({prospect, companies}) {
             </Span>
             {!expand ? null : 
             <div>
-            {/* <p>{prospect.email}</p>
-            <p>{prospect.phone}</p> */}
             <Button as={Link} to={src}>View this Prospect</Button>
             </div>}
-            {/* {expand ? <Down><h3>❱</h3></Down> : <Up><h3>❱</h3></Up>} */}
             </Card>
         </div>
     )

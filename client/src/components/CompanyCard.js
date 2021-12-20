@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import {useNavigate} from "react-router";
 
 function CompanyCard({company}) {
-    const [expand, setExpand] = useState(false)
 
     let navigate = useNavigate();
 
@@ -16,25 +14,10 @@ function CompanyCard({company}) {
         <div>
             <Card onClick={toDetails}>
             <h1>{company.name}</h1>
-            {/* {!expand ? null : 
-            <div>
-                <h2>Employees:</h2>
-            {company.prospects.map(prospect =>
-                <Test as={Link} to={`/prospects/${prospect.id}`} key={prospect.id}><li>{prospect.first_name} {prospect.last_name}</li></Test>
-                )}
-                
-            </div>
-            } */}
             </Card>
         </div>
     )
 }
-
-
-
-const Test = styled.li`
-
-`;
 
 const Card = styled.div`
 margin-top: 10px;
