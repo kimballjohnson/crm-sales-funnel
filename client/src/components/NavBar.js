@@ -15,7 +15,7 @@ function NavBar() {
             </NavButton>
 
             <HomeButton as={Link} to={`/`}>
-                VC Lab
+                CRM Sales Funnel
             </HomeButton>
             </Container>
         </div>
