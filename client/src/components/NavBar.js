@@ -6,7 +6,7 @@ function NavBar() {
     return(
         <div>
             <Container>
-            <NavButton as={Link} to={`/prospectspage`}>
+            <NavButton as={Link} to={`/`}>
                 Prospects
             </NavButton>
 
@@ -39,7 +39,7 @@ const HomeButton = styled.button`
 float: left;
 margin-top: 1%;
 margin-left: 1%;
-width: 25vw;
+width: 30vw;
 height: 10vh;
 /* line-height: 50px; */
 font-weight: bold;
@@ -55,7 +55,7 @@ justify-content: center;
 font-size: 5vh;
 
   &:hover {
-    width: 30vw;
+    width: 35vw;
     // border: 3px solid #7F7F7F;
     background: transparent;
     color: #7F7F7F;

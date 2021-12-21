@@ -37,7 +37,7 @@ function NewProspectForm({setAddingProspect, setAddingCompany, companies}) {
         e.preventDefault();
         createProspect(firstName, lastName, newCompanyId, stage, probability, email, phone);
         setAddingProspect(false)
-        navigate(`/prospectspage`)
+        navigate(`/`)
         window.location.reload(false)
       };
 

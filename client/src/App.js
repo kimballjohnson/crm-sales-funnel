@@ -43,7 +43,7 @@ function App() {
       <Router>
         <NavBar />
           <Routes>
-            <Route path="/prospectspage" element={  <ProspectsPage
+            <Route path="/" element={  <ProspectsPage
               prospects={prospects}
               loading={loadingProspects}
               companies={companies}
@@ -53,7 +53,7 @@ function App() {
               setAddingCompany={setAddingCompany}
 />}/>
 
-            <Route path="/prospectspage/:id" element={  <ProspectDetails
+            <Route path="/:id" element={  <ProspectDetails
               prospects={prospects}
               companies={companies}
               setAddingCompany={setAddingCompany}
@@ -73,9 +73,9 @@ function App() {
              loadingProspects={loadingProspects}
             />}/>
 
-            <Route path="/" element={  <HomePage
+            {/* <Route path="/" element={  <HomePage
             
-            />}/>
+            />}/> */}
           
       </Routes>
       </Router>
