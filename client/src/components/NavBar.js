@@ -39,7 +39,7 @@ const HomeButton = styled.button`
 float: left;
 margin-top: 1%;
 margin-left: 1%;
-width: 20vw;
+width: 25vw;
 height: 10vh;
 /* line-height: 50px; */
 font-weight: bold;
