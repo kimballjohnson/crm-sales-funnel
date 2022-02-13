@@ -60,17 +60,19 @@ function App() {
             />}/>
           
 
-            <Route path="/companiespage" element={  <CompaniesPage
+            <Route path="/companiespage" element={  
+            <CompaniesPage
               companies={existingCompanies}
               addingCompany={addingCompany}
               setAddingCompany={setAddingCompany}
               loading={loadingCompanies}
             />}/>
 
-            <Route path="/companiespage/:id" element={  <CompanyDetails
+            <Route path="/companiespage/:id" element={  
+            <CompanyDetails
               prospects={prospects}
-             setAddingProspect={setAddingProspect}
-             loadingProspects={loadingProspects}
+              setAddingProspect={setAddingProspect}
+              loadingProspects={loadingProspects}
             />}/>
 
             {/* <Route path="/" element={  <HomePage

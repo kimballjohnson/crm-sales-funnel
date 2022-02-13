@@ -16,7 +16,7 @@ function CompanyDetails({setAddingProspect, loadingProspects}) {
 
     const addProspect = () => {
         setAddingProspect(true)
-        navigate(`/prospects`)
+        navigate(`/`)
     }
 
 useEffect(() => {
